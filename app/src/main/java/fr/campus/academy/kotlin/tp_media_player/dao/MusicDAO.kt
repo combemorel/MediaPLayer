@@ -1,8 +1,8 @@
-package fr.campus.academy.kotlin.tp_media_player.entity
+package fr.campus.academy.kotlin.tp_media_player.dao
 
 import android.content.Context
 import android.provider.MediaStore
-import android.util.Log
+import fr.campus.academy.kotlin.tp_media_player.entity.Music
 
 class MusicDAO
 {
@@ -29,11 +29,13 @@ class MusicDAO
                 while (cursor.moveToNext())
                 {
 
-                    listMusics.add(Music(
+                    listMusics.add(
+                        Music(
                         cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)),
                         cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE)),
                         cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
-                    ))
+                    )
+                    )
                 }
             }catch (e: Exception) { e.printStackTrace() }
             finally { cursor.close() }

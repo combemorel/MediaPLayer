@@ -1,9 +1,10 @@
-package fr.campus.academy.kotlin.tp_media_player.entity
+package fr.campus.academy.kotlin.tp_media_player.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import fr.campus.academy.kotlin.tp_media_player.entity.MusicDTO
 
 @Dao
 abstract class MusicDBDAO {

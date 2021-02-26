@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.campus.academy.kotlin.tp_media_player.R
 import fr.campus.academy.kotlin.tp_media_player.adapter.MusicAdapter
 import fr.campus.academy.kotlin.tp_media_player.entity.Music
-import fr.campus.academy.kotlin.tp_media_player.entity.MusicDAO
+import fr.campus.academy.kotlin.tp_media_player.dao.MusicDAO
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class MainActivity : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -62,9 +64,7 @@ class MainActivity : AppCompatActivity() {
 
 
     // TODO: lecteur audio
-    // TODO: liste fichier audio sur appareil
     // TODO: boutton ajoute favoris
-    // TODO: sauvegarde favoris
     // TODO: button action bar favoris
     // TODO: notification lors du lancement de la lecture
     // TODO: notification lecture/pause (+ titre + dureé)
