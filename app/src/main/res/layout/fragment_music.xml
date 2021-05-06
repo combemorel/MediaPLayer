@@ -39,6 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+
     <ImageButton
         android:id="@+id/add_favoris"
         android:layout_width="40dp"

@@ -12,9 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import fr.campus.academy.kotlin.tp_media_player.R
+import fr.campus.academy.kotlin.tp_media_player.activity.MainActivity
 import fr.campus.academy.kotlin.tp_media_player.bdd.AppDatabaseHelper
+import fr.campus.academy.kotlin.tp_media_player.broadcast.PlayerBroadcastReceiver
 import fr.campus.academy.kotlin.tp_media_player.entity.Music
 import fr.campus.academy.kotlin.tp_media_player.entity.MusicDTO
+import fr.campus.academy.kotlin.tp_media_player.service.MediaplayerService
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.fragment_music.view.*
 import java.lang.Integer.parseInt
@@ -40,9 +43,11 @@ class MusicAdapter (
         val min: Int = listMusics[position].duration / 1000 / 60
         val sec: Int = listMusics[position].duration / 1000 % 60
         val size: Int = listMusics[position].size / 1000000
+        val uri: String = listMusics[position].uri
         var duration: String = if(min < 10)  "0"+min.toString()+":" else min.toString()+":"
         duration = if(sec < 10)  duration+"0"+sec.toString() else duration+sec.toString()
 
+        holder.textViewUri = listMusics[position].uri
         holder.textViewTitle.text = listMusics[position].title
         holder.textViewSize.text = "Taille : "+size.toString()+"Mo"
         holder.textViewDuration.text = "Durée : "+duration
@@ -73,6 +78,7 @@ class MusicAdapter (
         val textViewTitle: TextView = itemView.findViewById(R.id.title)
         val textViewSize: TextView = itemView.findViewById(R.id.size)
         val textViewDuration: TextView = itemView.findViewById(R.id.duration)
+        lateinit var textViewUri: String
 
         init
         {
@@ -94,6 +100,12 @@ class MusicAdapter (
 
             }
             itemView.findViewById<ConstraintLayout>(R.id.fragment).setOnClickListener {
+
+                val intent : Intent = Intent(activity, MediaplayerService::class.java);
+                intent.putExtra(MediaplayerService.EXTRA_COMMANDE, MediaplayerService.COMMANDE_PLAY)
+                intent.putExtra("uri",textViewUri)
+                Log.d("textViewUri", "textViewUri : "+textViewUri)
+                activity.startService(intent);
 
                 Toast.makeText(activity,"Lecture lancée", Toast.LENGTH_LONG).show()
 

@@ -3,6 +3,7 @@ package fr.campus.academy.kotlin.tp_media_player.activity
 import android.Manifest
 import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.campus.academy.kotlin.tp_media_player.R
 import fr.campus.academy.kotlin.tp_media_player.adapter.MusicAdapter
+import fr.campus.academy.kotlin.tp_media_player.broadcast.PlayerBroadcastReceiver
 import fr.campus.academy.kotlin.tp_media_player.dao.MusicDAO
 import fr.campus.academy.kotlin.tp_media_player.entity.Music
 import fr.campus.academy.kotlin.tp_media_player.service.MediaplayerService
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity()
 {
 
     private var musicSrv: MediaplayerService? = null
+    private lateinit var playerBroadcastReceiver: PlayerBroadcastReceiver
     private val playIntent: Intent? = null
     private var musicBound = false
     private var listMusics: MutableList<Music>? = null
@@ -52,6 +55,9 @@ class MainActivity : AppCompatActivity()
         {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),123)
         }
+
+//        playerBroadcastReceiver = PlayerBroadcastReceiver(this)
+//        registerReceiver(playerBroadcastReceiver, IntentFilter(PlayerBroadcastReceiver.INTENT_FILTER))
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)

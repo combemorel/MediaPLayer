@@ -13,7 +13,7 @@ abstract class MusicDBDAO {
     abstract fun findAll(): MutableList<MusicDTO>
 
     @Query("SELECT * FROM music WHERE title = :title")
-    abstract fun findOneByTitle(title: String): MusicDTO
+    abstract fun findOneByTitle(title: String): MusicDTO?
 
     @Insert
     abstract fun insert(vararg music: MusicDTO)

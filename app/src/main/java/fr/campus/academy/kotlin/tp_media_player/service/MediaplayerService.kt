@@ -4,12 +4,17 @@ import android.app.Service
 import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
 import android.os.PowerManager
+import android.util.Log
 import fr.campus.academy.kotlin.tp_media_player.R
 import fr.campus.academy.kotlin.tp_media_player.activity.MainActivity
 import fr.campus.academy.kotlin.tp_media_player.entity.Music
+import java.net.URI
+import java.net.URI.create
+import kotlin.math.log
 
 
 class MediaplayerService : Service()  {
@@ -32,7 +37,9 @@ class MediaplayerService : Service()  {
         // init :
         super.onCreate()
 
-        // media player :
+        //media player :
+
+
 //        mediaPlayer = MediaPlayer.create(this, R.raw.titre)
 //        mediaPlayer.setOnCompletionListener {
 //
@@ -54,6 +61,10 @@ class MediaplayerService : Service()  {
             {
                 COMMANDE_PLAY -> {
                     //lecture :
+                    val uri = intent.getStringExtra("uri")
+                    Log.d("uri", "uri :"+uri)
+
+                    mediaPlayer.setDataSource(uri)
                     mediaPlayer.start()
                 }
                 COMMANDE_PAUSE -> {

@@ -2,6 +2,7 @@ package fr.campus.academy.kotlin.tp_media_player.dao
 
 import android.content.Context
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media.getContentUri
 import fr.campus.academy.kotlin.tp_media_player.entity.Music
 
 class MusicDAO
@@ -9,6 +10,7 @@ class MusicDAO
     fun getListMusics(context: Context): MutableList<Music>
     {
         val projection = arrayOf(
+            MediaStore.Audio.Media.DATA,
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.SIZE,
             MediaStore.Audio.Media.DURATION)
@@ -31,6 +33,7 @@ class MusicDAO
 
                     listMusics.add(
                         Music(
+                        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA)),
                         cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)),
                         cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE)),
                         cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
