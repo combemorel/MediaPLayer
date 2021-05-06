@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import fr.campus.academy.kotlin.tp_media_player.R
 import fr.campus.academy.kotlin.tp_media_player.bdd.AppDatabaseHelper
@@ -90,6 +91,11 @@ class MusicAdapter (
                 {
                     Toast.makeText(activity,"Ce Titre est déja présent dans vos Favoris", Toast.LENGTH_LONG).show()
                 }
+
+            }
+            itemView.findViewById<ConstraintLayout>(R.id.fragment).setOnClickListener {
+
+                Toast.makeText(activity,"Lecture lancée", Toast.LENGTH_LONG).show()
 
             }
         }
